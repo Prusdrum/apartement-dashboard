@@ -1,7 +1,8 @@
 const getUrl = require('./getUrl');
 
-const getRequestOptions = () => {
-    const url = getUrl(20, new Date(Date.now()));
+const getRequestOptions = (line, direction, stop) => {
+    const now = new Date(Date.now());
+    const url = getUrl(line, now, direction, stop);
     
     const options = {
         uri: url,
