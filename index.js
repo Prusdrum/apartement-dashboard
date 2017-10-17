@@ -1,12 +1,9 @@
-const fs = require('fs');
-const promisify = require('util').promisify;
-
 const express = require('express');
 const app = express();
 
-const tramRoute = require('./modules/transport/tramsRoute');
+const configureTramRoute = require('./modules/tram/configureTramRoute');
 
-app.get('/trams', tramRoute);
+configureTramRoute(app);
 
 app.listen('8081');
 console.log('Magic happens on port 8081');
