@@ -1,7 +1,7 @@
 const express = require('express');
 const app = express();
 
-const configureTramRoute = require('./modules/tram/configureTramRoute');
+const configureTramRoute = require('./modules/tram/index');
 
 configureTramRoute(app);
 

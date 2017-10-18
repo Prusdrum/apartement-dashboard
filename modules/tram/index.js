@@ -1,8 +1,8 @@
 const getTrams = require('./tramsController').getTrams;
 
 const configureRoute = (app) => {
-    app.get('/trams', (req, res, next) => {
-        const {lineNumber, direction, stop} = req.query;
+    app.get('/trams/:lineNumber/:direction/:stop', (req, res, next) => {
+        const {lineNumber, direction, stop} = req.params;
 
         getTrams(lineNumber, direction, stop).then(trams => {
             res.json(trams);
