@@ -10,6 +10,10 @@ const configureRoute = (app) => {
             res.json(error);
         });
     });
+
+    app.get('/', (req, res, next) => {
+        res.send('Hello');
+    });
 }
 
 module.exports = configureRoute;
