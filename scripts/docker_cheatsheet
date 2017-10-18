@@ -1,0 +1,8 @@
+#build image
+docker build -t apartement-dashboard ./src
+
+#run image
+docker run -p 49160:8081 -d apartement-dashboard
+
+#show processes
+docker ps
