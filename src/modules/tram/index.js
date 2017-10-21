@@ -1,4 +1,4 @@
-const getTrams = require('./tramsController').getTrams;
+const getTrams = require('./trams-controller').getTrams;
 
 const configureRoute = (app) => {
     app.get('/trams/:lineNumber/:direction/:stop', (req, res, next) => {
