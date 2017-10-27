@@ -2,10 +2,13 @@ const express = require('express');
 const app = express();
 const config = require('./config/server-config');
 
-const configureTramRoute = require('./modules/tram/index');
+const configureExpressApp = require('./server/configureExpressApp');
+const configureDb = require('./server/configureDb');
 
-configureTramRoute(app);
+configureDb(config.DB_PATH).then(db => {
+    configureExpressApp(app, db, config);
+    app.listen(config.PORT);
+    console.log(`Magic happens on port ${config.PORT}`);
+});
 
-app.listen(config.PORT);
-console.log(`Magic happens on port ${config.PORT}`);
 exports = module.exports = app;

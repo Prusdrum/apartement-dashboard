@@ -1,3 +1,5 @@
+#DISTRO VERSION
+#PRETTY_NAME="Debian GNU/Linux 8 (jessie)"
 FROM node:8.7
 
 # Create app directory
