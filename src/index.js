@@ -2,8 +2,8 @@ const express = require('express');
 const app = express();
 const config = require('./config/server-config');
 
-const configureExpressApp = require('./server/configureExpressApp');
-const configureDb = require('./server/configureDb');
+const configureExpressApp = require('./server/configure-express-app');
+const configureDb = require('./server/configure-db');
 
 configureDb(config).then(db => {
     configureExpressApp(app, db, config);
