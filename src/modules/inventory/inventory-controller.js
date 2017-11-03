@@ -1,12 +1,14 @@
 const HttpStatus = require('http-status-codes');
 
-const createInventoryController = (itemsRepository) => {
+const createInventoryController = (itemsRepository, mapper) => {
 
     const getItems = (req, res) => {
-        itemsRepository.get()
+        const {tags} = req.query;
+
+        itemsRepository.get(tags)
             .then((items) => {
                 res.status(HttpStatus.OK);
-                res.json(items);
+                res.json(items.map(mapper.mapToResponse));
             });
     }
 
@@ -16,13 +18,24 @@ const createInventoryController = (itemsRepository) => {
         itemsRepository.create(name, tags)
             .then((item) => {
                 res.status(HttpStatus.CREATED);
-                res.json(item);
+                res.json(mapper.mapToResponse(item));
+            });
+    }
+
+    const deleteItem = (req, res) => {
+        const {id} = req.params;
+
+        itemsRepository.delete(id)
+            .then((item) => {
+                res.status(HttpStatus.NO_CONTENT);
+                res.json({});
             });
     }
 
     return {
         getItems,
-        createItem
+        createItem,
+        deleteItem
     }
 }
 

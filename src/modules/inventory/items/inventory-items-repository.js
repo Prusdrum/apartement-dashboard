@@ -1,7 +1,7 @@
 const itemsRepository = (IntenvoryItem) => {
     return {
-        get: () => {
-            return IntenvoryItem.find({});
+        get: (tags = []) => {
+            return IntenvoryItem.find({ });
         },
         create: (name, tags) => {
             const item = new IntenvoryItem({
@@ -9,6 +9,9 @@ const itemsRepository = (IntenvoryItem) => {
             });
 
             return item.save();
+        },
+        delete: (id) => {
+            return IntenvoryItem.remove({ _id: id });
         }
     }
 };
