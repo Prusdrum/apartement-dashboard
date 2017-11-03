@@ -1,21 +1,9 @@
 const promisify = require('util').promisify;
-
-const MongoClient = require('mongodb').MongoClient;
-const connectDb = promisify(MongoClient.connect);
+const mongooseConnection = require('./db/mongoose-connection');
+const fakeConnection = require('./db/fake-connection');
 
 const configureDb = (config) => {
-    if (config.USE_DB === 'false') {
-        console.log('Using fake DB');
-
-        return new Promise((resolve) => {
-            const dbMock = {};
-
-            resolve(dbMock);
-        });
-        
-    } else {
-        return connectDb(config.DB_PATH);
-    }
+    return config.USE_DB === 'false' ? fakeConnection(config) : mongooseConnection(config)
 }   
 
 module.exports = configureDb;
