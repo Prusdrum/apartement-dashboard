@@ -1,7 +1,15 @@
 const itemsRepository = (IntenvoryItem) => {
     return {
-        get: (tags = []) => {
-            return IntenvoryItem.find({ });
+        get: (tags) => {
+            const query = {};
+
+            if (tags && tags.length > 0) {
+                query.tags = {
+                    $in: tags
+                };
+            }
+            
+            return IntenvoryItem.find(query);
         },
         create: (name, tags) => {
             const item = new IntenvoryItem({
@@ -10,9 +18,7 @@ const itemsRepository = (IntenvoryItem) => {
 
             return item.save();
         },
-        delete: (id) => {
-            return IntenvoryItem.remove({ _id: id });
-        }
+        delete: (id) => IntenvoryItem.remove({ _id: id })
     }
 };
 

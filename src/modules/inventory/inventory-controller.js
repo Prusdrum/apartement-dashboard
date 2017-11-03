@@ -3,7 +3,9 @@ const HttpStatus = require('http-status-codes');
 const createInventoryController = (itemsRepository, mapper) => {
 
     const getItems = (req, res) => {
-        const {tags} = req.query;
+        const tagsQuery = req.query.tags;
+
+        const tags = tagsQuery ? tagsQuery.split(',') : null;
 
         itemsRepository.get(tags)
             .then((items) => {

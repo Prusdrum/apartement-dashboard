@@ -6,8 +6,6 @@ const mapToResponse = (schemaModel) => {
     }
 }
 
-
-
 module.exports = {
     mapToResponse
 };
