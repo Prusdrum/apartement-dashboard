@@ -13,6 +13,7 @@ const configureRoute = (app, db) => {
     app.get('/items', controller.getItems);
     app.post('/items', controller.createItem);
     app.delete('/items/:id', controller.deleteItem);
+    
 }
 
 module.exports = configureRoute;

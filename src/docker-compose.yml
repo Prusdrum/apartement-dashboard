@@ -4,6 +4,7 @@ services:
     build: .
     volumes:
       - ./:/app
+      - './client/public:/client/public'
     ports:
       - "8081:8081"
     links:
