@@ -1,6 +1,14 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 
 import DashboardApp from './DashboardApp';
 
-ReactDOM.render(<DashboardApp />, document.getElementById('dashboard-root'));
+
+const App = () => (
+    <MuiThemeProvider>
+      <DashboardApp />
+    </MuiThemeProvider>
+  );
+
+ReactDOM.render(<App />, document.getElementById('dashboard-root'));

@@ -1,4 +1,7 @@
 import React, {Component} from 'react';
+import AppBar from 'material-ui/AppBar';
+import RaisedButton from 'material-ui/RaisedButton';
+
 
 class DashboardApp extends Component {
     constructor(props) {
@@ -20,8 +23,9 @@ class DashboardApp extends Component {
     render() {
         return (
             <div>
+                <AppBar title="Aparatement dashboard"/>
                 <h1>Dashboard app working: {this.state.counter}</h1>
-                <button onClick={this.increment}>+1</button>
+                <RaisedButton label="+1" primary={true} onClick={this.increment}/>
             </div>
         )
     }
