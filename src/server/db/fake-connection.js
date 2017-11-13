@@ -1,16 +1,21 @@
+const inventoryData = require('./fake-data/inventory.json');
+
 module.exports = (config) => {
     console.log('Using fake DB');
     
     return new Promise((resolve) => {
-        const schema = {
+        const inventoryItem = {
             find: () => {
-                return Promise.resolve([]);
+                return Promise.resolve(inventoryData);
             }
         }
 
         //mock model registration
-        const model = () => {
-            return schema
+        const model = (modelName) => {
+            switch (modelName) {
+                case 'InventoryItem':
+                    return inventoryItem;
+            };
         }
 
 

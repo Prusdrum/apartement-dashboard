@@ -1,4 +1,6 @@
-const itemsRepository = (IntenvoryItem) => {
+const itemsRepository = (db) => {
+    const InventoryItem = db.model('InventoryItem');
+
     return {
         get: (tags) => {
             const query = {};
@@ -9,16 +11,16 @@ const itemsRepository = (IntenvoryItem) => {
                 };
             }
             
-            return IntenvoryItem.find(query);
+            return InventoryItem.find(query);
         },
         create: (name, tags) => {
-            const item = new IntenvoryItem({
+            const item = new InventoryItem({
                 name, tags
             });
 
             return item.save();
         },
-        delete: (id) => IntenvoryItem.remove({ _id: id })
+        delete: (id) => InventoryItem.remove({ _id: id })
     }
 };
 

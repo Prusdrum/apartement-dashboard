@@ -6,14 +6,13 @@ const Schema = require('mongoose').Schema;
 const createInventoryController = require('./inventory-controller');
 
 const configureRoute = (app, db) => {
-    const itemSchema = registerItemSchema(db, Schema);
-    const itemsRepository = createItemsRepository(itemSchema);
+    registerItemSchema(db, Schema);
+    const itemsRepository = createItemsRepository(db);
     const controller = createInventoryController(itemsRepository, requestMapper);
     
     app.get('/items', controller.getItems);
     app.post('/items', controller.createItem);
     app.delete('/items/:id', controller.deleteItem);
-    
 }
 
 module.exports = configureRoute;
