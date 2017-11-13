@@ -2,8 +2,9 @@ version: "2"
 services:
   web:
     build: .
+    container_name: apartement_app
     volumes:
-      - ./:/app
+      - .:/app
     ports:
       - "8081:8081"
     links:
