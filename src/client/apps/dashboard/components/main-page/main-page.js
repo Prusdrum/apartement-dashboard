@@ -3,26 +3,19 @@ import AppBar from 'material-ui/AppBar';
 import RaisedButton from 'material-ui/RaisedButton';
 import PageWrapper from '../page-wrapper/page-wrapper';
 import {Card, CardActions, CardHeader, CardMedia, CardTitle, CardText} from 'material-ui/Card';
-
-const listElementStyle = {
-    margin: '25px 0'
-}
+import TramWidget from './tram-widget/tram-widget';
+import WidgetWrapper from './widgets/widget-wrapper';
+import WidgetList from './widgets/widget-list-wrapper';
 
 class MainPage extends Component {
     render() {
         return (
             <PageWrapper>
-                <ul>
-                    <li style={listElementStyle}>
-                        <Card>
-                            <CardText>
-                                <div>
-                                    Tutaj będzie pogoda
-                                </div>
-                            </CardText>
-                        </Card>
-                    </li>
-                    <li style={listElementStyle}>
+                <WidgetList>
+                    <WidgetWrapper>
+                        <TramWidget />
+                    </WidgetWrapper>
+                    <WidgetWrapper>
                         <Card>
                             <CardText>
                                 <div>
@@ -30,8 +23,8 @@ class MainPage extends Component {
                                 </div>
                             </CardText>
                         </Card>
-                    </li>
-                </ul>
+                    </WidgetWrapper>
+                </WidgetList>
             </PageWrapper>
         )
     }
