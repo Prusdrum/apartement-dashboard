@@ -3,16 +3,24 @@ const registerItemSchema = require('./items/register-item-schema');
 const requestMapper = require('./items/item-request-model');
 const Schema = require('mongoose').Schema;
 
-const createInventoryController = require('./inventory-controller');
+const createInventoryController = require('./inventory-controller/inventory-controller');
 
-const configureRoute = (app, db) => {
+const setupModule = (options, imports, register) => {
+    const {webserver, database} = imports;
+    const db = database.get();
+    const app = webserver.getApp();
+
+    console.log('register inventory api');
+
     registerItemSchema(db, Schema);
     const itemsRepository = createItemsRepository(db);
     const controller = createInventoryController(itemsRepository, requestMapper);
     
-    app.get('/items', controller.getItems);
-    app.post('/items', controller.createItem);
-    app.delete('/items/:id', controller.deleteItem);
-}
+    app.get('/api/items', controller.getItems);
+    app.post('/api/items', controller.createItem);
+    app.delete('/api/items/:id', controller.deleteItem);
 
-module.exports = configureRoute;
+    register(null, {});
+};
+
+module.exports = setupModule;

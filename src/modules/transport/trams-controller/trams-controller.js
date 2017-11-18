@@ -2,9 +2,9 @@ const promisify = require('util').promisify;
 
 const request = promisify(require('request'));
 
-const getUrl = require('./get-url/get-url');
-const getRequestOptions = require('./get-request-options');
-const getTimetable = require('./scrapper/time-table-scraper').getTimetable;
+const getUrl = require('../get-url/get-url');
+const getRequestOptions = require('../get-request-options/get-request-options');
+const getTimetable = require('../scrapper/time-table-scraper').getTimetable;
 
 const getTrams = (lineNumber, direction, stop) => {
     const date = new Date(Date.now());

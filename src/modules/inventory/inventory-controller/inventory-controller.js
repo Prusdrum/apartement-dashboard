@@ -6,7 +6,7 @@ const createInventoryController = (itemsRepository, mapper) => {
         const tagsQuery = req.query.tags;
 
         const tags = tagsQuery ? tagsQuery.split(',') : null;
-
+        console.log('get items');
         itemsRepository.get(tags)
             .then((items) => {
                 res.status(HttpStatus.OK);

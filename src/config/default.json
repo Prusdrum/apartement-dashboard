@@ -1,0 +1,15 @@
+{
+    "services/webserver": {
+        "PORT": 8081,
+        "VIEWS": "./pages",
+        "STATIC": "./client/public"
+    },
+    "services/database": {
+        "PATH": "mongodb://mongo/apartement",
+        "USE_REAL_DB": false
+    },
+
+    "modules/transport": { },
+    "modules/inventory": { },
+    "modules/routes": { }
+}

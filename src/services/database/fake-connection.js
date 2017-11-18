@@ -1,6 +1,6 @@
 const inventoryData = require('./fake-data/inventory.json');
 
-module.exports = (config) => {
+module.exports = () => {
     console.log('Using fake DB');
     
     return new Promise((resolve) => {

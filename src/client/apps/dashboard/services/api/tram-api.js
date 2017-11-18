@@ -20,7 +20,7 @@ const mapResponse = (data) => ({
 });
 
 export default ({line, direction, stop}) => {
-    const url = `/trams/${line}/${direction}/${stop}`;
+    const url = `/api/trams/${line}/${direction}/${stop}`;
 
     return fetch(url)
         .then(parseResponse)
