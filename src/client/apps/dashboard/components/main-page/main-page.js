@@ -19,7 +19,7 @@ class MainPage extends Component {
                         <Card>
                             <CardText>
                                 <div>
-                                    Tuta będzie ile do tramwaju
+                                    Tutaj będzie pogoda
                                 </div>
                             </CardText>
                         </Card>

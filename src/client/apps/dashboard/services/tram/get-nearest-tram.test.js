@@ -139,7 +139,7 @@ const testHour = (given, expected) => {
     expect(actual).to.equal(expected);
 }
 
-describe('get nearest tram', () => {
+xdescribe('get nearest tram', () => {
     describe('when there are departues in specific hour', () => {
         it('should return time of the nearest tram', () => {
             //Thursday
