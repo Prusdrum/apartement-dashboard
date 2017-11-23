@@ -5,8 +5,8 @@
         "STATIC": "./client/public"
     },
     "services/database": {
-        "PATH": "mongodb://mongo/apartement",
-        "USE_REAL_DB": false
+        "PATH": "localhost:27017/mongo/apartement",
+        "USE_REAL_DB": true
     },
 
     "modules/transport": { },
