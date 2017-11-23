@@ -6,20 +6,37 @@ const getUrl = require('../get-url/get-url');
 const getRequestOptions = require('../get-request-options/get-request-options');
 const getTimetable = require('../scrapper/time-table-scraper').getTimetable;
 
-const getTrams = (lineNumber, direction, stop) => {
-    const date = new Date(Date.now());
-    const url = getUrl(lineNumber, date, direction, stop);
-    const options = getRequestOptions(url);
-    
-    return request(options).then((response) => {
-        const timeTable = getTimetable(response.body);
+const createTramsController = () => {
 
-        return Object.assign({}, timeTable, {
-            lineNumber
-        });
-    });
+    const getTrams = (req, res) => {
+        const {lineNumber, direction, stop} = req.params;
+        
+        const date = new Date(Date.now());
+        const url = getUrl(lineNumber, date, direction, stop);
+        const options = getRequestOptions(url);
+        
+        return request(options)
+            .then((response) => {
+                const timeTable = getTimetable(response.body);
+        
+                return Object.assign({}, timeTable, {
+                    lineNumber
+                });
+            })
+            .then((trams => {
+                res.json(trams);
+            })).catch(error => {
+                res.json(error);
+            });
+    }
+
+
+    return {
+        getTrams
+    }
 }
 
-module.exports = {
-    getTrams
-};
+
+
+
+module.exports = createTramsController;
