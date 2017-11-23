@@ -2,9 +2,14 @@ import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import {Card, CardActions, CardHeader, CardMedia, CardTitle, CardText} from 'material-ui/Card';
 import {loadTrams} from '../../../state/actions/dashboard';
-import {getNearestTramDepartures} from '../../../state/selectors/dashboard';
+import {
+    getNearestTramDepartures, 
+    getTramStopName,
+    areTramsLoaded,
+    getTramLine
+} from '../../../state/selectors/dashboard';
 import moment from 'moment';
-import { setInterval } from 'timers';
+import './tram-widget.css';
 
 class TramWidget extends Component {
     constructor(props) {
@@ -31,25 +36,41 @@ class TramWidget extends Component {
         clearInterval(this.currentTimeInterval);
     }
 
+    renderHeader() {
+        const {stopName, tramLine} = this.props;
+
+        return (
+            <h1 className="TramWidget__header">Tramwaj {tramLine} z {stopName}</h1>
+        );
+    }
+
     render() {
-        const {currentHour, nextHour} = this.props;
+        const {currentHour, nextHour, stopName, areTramsLoaded} = this.props;
+
+        if (!areTramsLoaded) {
+            return <div>Ładuję...</div>
+        }
 
         return (
             <Card>
                 <CardText>
-                    <h1>Najbliższe tramwaje</h1>
-                    <h2>Czas: {this.state.currentTime}</h2>
-                    <div>
-                        <div>
-                            <h1>Godzina: {currentHour.hour}</h1>
+                    <div className="TramWidget__content">
+                        {this.renderHeader()}
+                        <h2 className="TramWidget__currentTime">Czas: {this.state.currentTime}</h2>
+                        <div className="TramWidget__schedule--current">
+                            <h1 className="TramWidget__schedule-header">Godzina: {currentHour.hour}</h1>
                             <ul>
-                                {currentHour.departures.map((time, index) => <li key={`current-hour-${index}`}>{time}</li>)}
+                                {currentHour.departures.map((time, index) => (
+                                    <li key={`current-hour-${index}`} className="TramWidget__schedule-minute">{time}</li>
+                                ))}
                             </ul>
                         </div>
-                        <div>
-                            <h1>Godzina: {nextHour.hour}</h1>
+                        <div className="TramWidget__schedule--next">
+                            <h1 className="TramWidget__schedule-header">Godzina: {nextHour.hour}</h1>
                             <ul>
-                                {nextHour.departures.map((time, index) => <li key={`next-hour-${index}`}>{time}</li>)}
+                                {nextHour.departures.map((time, index) => (
+                                    <li key={`next-hour-${index}`} className="TramWidget__schedule-minute">{time}</li>
+                                ))}
                             </ul>
                         </div>
                     </div>
@@ -65,7 +86,10 @@ const mapStateToProps = (state) => {
 
     return {
         currentHour,
-        nextHour
+        nextHour,
+        stopName: getTramStopName(state),
+        areTramsLoaded: areTramsLoaded(state),
+        tramLine: getTramLine(state)
     }
 }
 
