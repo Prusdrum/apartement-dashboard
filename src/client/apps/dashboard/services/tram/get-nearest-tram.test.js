@@ -1,4 +1,3 @@
-const expect = require('chai').expect;
 const getNearestTram = require('./get-nearest-tram');
 const moment = require('moment');
 
@@ -136,7 +135,7 @@ const testHour = (given, expected) => {
     
     const nearestTram = getNearestTram(departures, now);
     const actual = moment(nearestTram).format('HH:mm');
-    expect(actual).to.equal(expected);
+    expect(actual).toEqual(expected);
 }
 
 xdescribe('get nearest tram', () => {

@@ -1,4 +1,3 @@
-const expect = require('chai').expect;
 const moment = require('moment');
 const getTramForSpecificHour = require('./get-tram-for-specific-hour');
 
@@ -35,7 +34,7 @@ describe('when day is regular day', () => {
         const now = moment('2017-11-23 05:00:00');
         const timesInHour = getTramForSpecificHour(now, departures);
 
-        expect(timesInHour.length).to.equal(5);
+        expect(timesInHour.length).toEqual(5);
 
         const expected = [
             moment('2017-11-23T05:10:00').toDate(),
@@ -45,6 +44,6 @@ describe('when day is regular day', () => {
             moment('2017-11-23T05:56:00').toDate()
         ];
 
-        expect(timesInHour).to.deep.equal(expected);
+        expect(timesInHour).toEqual(expect.arrayContaining(expected));
     });
 });

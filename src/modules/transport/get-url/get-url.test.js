@@ -1,5 +1,3 @@
-const expect = require('chai').expect;
-
 const getUrl = require('./get-url');
 
 //helpers
@@ -26,7 +24,7 @@ describe('get url', () => {
         const actual = getQueryStringValue('linia', url);
         const expected = '20__1_4';
 
-        expect(actual).to.equal(expected);
+        expect(actual).toEqual(expected);
     });
 
     it('should create date format with no delimeter - indexed from 1', () => {
@@ -34,6 +32,6 @@ describe('get url', () => {
         const expected = '2010610';
 
         //probably it should have left pad
-        expect(actual).to.equal(expected);
+        expect(actual).toEqual(expected);
     });
 });
