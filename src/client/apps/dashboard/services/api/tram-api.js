@@ -10,7 +10,7 @@ const mapDeparture = (data) => ({
     holidays: data.holidays,
     hour: data.hour,
     saturdays: data.saturdays,
-    weekeday: data.weekday
+    weekday: data.weekday
 })
 
 const mapResponse = (data) => ({

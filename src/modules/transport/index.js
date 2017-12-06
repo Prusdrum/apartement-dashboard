@@ -1,18 +1,12 @@
-const getTrams = require('./trams-controller/trams-controller').getTrams;
+const createTramsController = require('./trams-controller/trams-controller');
 
 const setupModule = (options, imports, register) => {
     const {webserver} = imports;
     const app = webserver.getApp();
 
-    app.get('/api/trams/:lineNumber/:direction/:stop', (req, res, next) => {
-        const {lineNumber, direction, stop} = req.params;
-        
-        getTrams(lineNumber, direction, stop).then(trams => {
-            res.json(trams);
-        }).catch(error => {
-            res.json(error);
-        });
-    });
+    const controller = createTramsController();
+
+    app.get('/api/trams/:lineNumber/:direction/:stop', controller.getTrams);
 
     register(null, {});
 };

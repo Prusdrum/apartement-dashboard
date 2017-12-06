@@ -2,8 +2,6 @@ const fs = require('fs');
 const path = require('path');
 const promisify = require('util').promisify;
 
-const expect = require('chai').expect;
-
 const getTimetable = require('./time-table-scraper').getTimetable;
 
 const fileName = path.join(__dirname, 'test-fixtures/timetable.html');
@@ -23,6 +21,6 @@ describe('getTimetable', () => {
         const expected = 'Mały Płaszów';
         const actual = timetable.stopName;
 
-        expect(actual).to.equal(expected);
+        expect(actual).toEqual(expected);
     });
 });

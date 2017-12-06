@@ -21,7 +21,22 @@ module.exports = {
                         plugins: ['transform-object-rest-spread']
                     }
                 }
-            }
+            },
+            {
+                test: /\.css$/,
+                use: [
+                    { loader: 'style-loader' },
+                    { loader: 'css-loader' },
+                    { 
+                        loader: 'postcss-loader', 
+                        options: {
+                            plugins: [
+                                require('autoprefixer')
+                            ]
+                        }
+                    }
+                ]
+            },
         ]
     }
 }

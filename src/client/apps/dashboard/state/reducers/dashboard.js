@@ -6,7 +6,8 @@ import {
 const initialState = {
     tramStop: '',
     tramLine: null,
-    tramDepartures: []
+    tramDepartures: [],
+    tramsLoaded: false
 };
 
 export default handleActions({
@@ -14,6 +15,7 @@ export default handleActions({
         ...state,
         tramStop: trams.stopName,
         tramLine: trams.lineNumber,
-        tramDepartures: trams.departures
+        tramDepartures: trams.departures,
+        tramsLoaded: true
     })
 }, initialState);
